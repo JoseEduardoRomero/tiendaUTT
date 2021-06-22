@@ -1,0 +1,128 @@
+<div class="content-container">
+    <div class="home-header">
+        <h2 class="home-header-user">Bienvenido USUARIO</h2>
+
+        <P>En esta seccion el Administrador podra añadir, editar, y eliminar productos de ropa</P>
+
+    </div>
+    <div class="add-product ">
+        <h2 class="title-forms">Añadir nuevo producto a ROPA</h2>
+        <form [formGroup]="newPostForm" *ngIf=" status == true">
+            <div class="product-forms">
+                <div class="form-left">
+                    <input type="text" placeholder="Nombre del producto" formControlName="name" id="name" class="form-control">
+                    <textarea placeholder="Escribe una descripcion" formControlName="description" id="description" class="form-control"></textarea>
+                </div>
+                <div class="form-right">
+                    <select class="form-select" formControlName="size"  aria-label="Default select example">
+                        <option value="CH">CH</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                        <option value="XL">XL</option>
+
+
+                      </select>
+                    <!-- <input type="text" placeholder="Talla" formControlName="size" id="size" class="form-control"> -->
+                    <input type="number" placeholder="Precio" formControlName="price" id="price" class="form-control">
+                    <select class="form-select" formControlName="category"  aria-label="Default select example">
+                        <option value="ropa">Ropa</option>
+                        <option value="accesorios">Accesorios</option>
+                      </select>
+                    <input type="file" formControlName="img" (change)="handleImage($event)">
+                    <div class="image-form-cotainer">
+                        <label class="custom-file">
+                            <input type="file" formControlName="img" (change)="handleImage($event)" />
+                          <p>Seleccionar</p>
+                          </label>
+    <!-- <img class="img-form" src="image"
+                            alt=""> -->
+                            <!-- <p *ngIf="image">{{image.name}}</p> -->
+                    </div>
+                    <button *ngIf="status == true" type="reset" (click)="addNewPost(newPostForm.value)">Añadir producto</button>
+                    <!-- <button data-toggle="modal" data-target=".bd-example-modal-lg" *ngIf="status == false" type="reset" (click)="editPost(newPostForm.value)">Editar producto</button> -->
+
+                </div>
+            </div>
+        </form>
+
+
+        <form [formGroup]="newPostForm2" *ngIf=" status == false">
+            <div class="product-forms">
+                <div class="form-left">
+                    <input type="text" placeholder="Nombre del producto" formControlName="name" id="name" class="form-control">
+                    <textarea placeholder="Escribe una descripcion" formControlName="description" id="description" class="form-control"></textarea>
+                </div>
+                <div class="form-right">
+                    <select class="form-select"  formControlName="size"  aria-label="Default select example">
+                        <option value="CH">CH</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                        <option value="XL">XL</option>
+
+
+                      </select>
+                    <!-- <input type="text" placeholder="Talla" formControlName="size" id="size" class="form-control"> -->
+                    <input type="number" placeholder="Precio" formControlName="price" id="price" class="form-control">
+
+                    <select class="form-select" formControlName="category" id="category"  aria-label="Default select example">
+                        <option value="ropa">Ropa</option>
+                        <option value="accesorios">Accesorios</option>
+                      </select>
+<div *ngIf="imgstatus == true">
+
+    <img src="{{img}}" alt="">
+    <button (click)=" editarImage(fileRef)">Cambiar imagen</button>
+</div>
+<div  *ngIf="imgstatus == false">
+    <input type="file" formControlName="imagePost" (change)="handleImage($event)">
+
+    <div class="image-form-cotainer">
+        <label class="custom-file">
+            <input type="file" formControlName="imagePost" (change)="handleImage($event)" />
+          <p>Seleccionar</p>
+          </label>
+    <!-- <img class="img-form" src="image"
+            alt=""> -->
+            <!-- <p *ngIf="image">{{image.name}}</p> -->
+    </div>
+</div>
+
+                    <button  type="reset" (click)="editPost(newPostForm2.value)">Editar producto</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            ...
+          </div>
+        </div>
+      </div>
+    <div class="product-lists">
+        <h2 class="table-title">Productos Actuales de ROPA</h2>
+        <table>
+            <tr class="table-header">
+                <th class="table-img">IMG</th>
+                <th class="table-nombre">Nombre</th>
+                <th class="table-precio">Precio</th>
+                <th class="table-talla">Talla</th>
+                <th class="table-descripcion">Descripcion</th>
+                <th class="table-edit">Editar</th>
+                <th class="table-delete">Eliminar</th>
+            </tr>
+            <tr class="table-product" *ngFor=" let a of dataRopa[0]">
+                <td class="table-img"><img src="{{a.img}}" alt=""></td>
+                <td class="table-nombre">{{a.name}}</td>
+                <td class="table-precio">${{a.price}}</td>
+                <td class="table-talla">{{a.size}}</td>
+                <td class="table-descripcion">{{a.description}}</td>
+                <td class="table-edit"><i (click)="editar(a)" class="fas fa-edit"></i></td>
+                <td class="table-delete" ><i (click)="delete(a.id)" class="fas fa-trash"></i></td>
+            </tr>
+
+        </table>
+    </div>
+</div>

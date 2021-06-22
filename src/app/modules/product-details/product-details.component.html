@@ -1,0 +1,62 @@
+<div class="containerone" style="height: 150px;">
+
+</div>
+<main *ngIf="!loader && product">
+
+  <div class="container">
+    <div class="row product-content">
+      <div class="col-sm-12 col-md-6 product-image">
+        <div class="row">
+          <div class="col-3">
+            <div class="column">
+              <img src="{{ img }}" alt="Nature" class="product-single-img" (click)="this.myFunction($event)" />
+            </div>
+          </div>
+          <div class="col-9 product-expand-container-img">
+            <img id="expandedImg" src="{{img}}" class="product-expand-img" />
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 product-info">
+        <h1 class="product-info-title">{{product.info.name}}</h1>
+        <h2 class="product-info-subTitles">Descripción</h2>
+        <p class="product-info-description">
+          {{ product.info.description }}
+        </p>
+        <h2 class="product-info-subTitles">Tallas</h2>
+        <div class="product-list-buttons">
+          <button class="product-btn product-btn-active btn">{{ product.info.size }}</button>
+
+        </div>
+        <div class="form">
+          <h2 class="product-info-subTitles">
+            Precio: <span class="title">${{ product.info.price }}</span>
+          </h2>
+          <section class="">
+            <div *ngIf="product.info.stock>0 ">
+              <h2 class="stock"><i class="fas fa-check-circle"></i>Disponible</h2>
+            </div>
+            <div *ngIf="product.info.stock === 0">
+              <h2 class="stock"><i class="fas fa-ban"></i>No disponible</h2>
+            </div>
+          </section>
+          <h2 class="product-info-subTitles">Cantidad:</h2>
+
+          <div class="row quantity-content">
+            <button class="quantity" (click)="this.decrementCount()">-</button>
+            <h2 class="quantity-p">{{ count }}</h2>
+            <button class="quantity" (click)="this.addCount()">+</button>
+          </div>
+          <h5>Total: ${{ count*product.info.price }}</h5>
+          <button class="btn product-btn-form product-btn-add"
+            (click)="this.addToCart(product.info, this.count, product.id)"
+            [disabled]="isProductNew || product.info.stock === 0">
+            Añadir <i class="fas fa-shopping-bag"></i>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<div *ngIf="loader"> Cargando...</div>

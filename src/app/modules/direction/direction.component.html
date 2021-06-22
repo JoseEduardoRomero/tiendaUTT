@@ -1,0 +1,69 @@
+
+  <div class="container-content">
+    <div class="direction-container">
+      <h4 class="direction-title">Direcciones de envio</h4>
+      <div class="card" style="width: 20rem;">
+        <div class="card-body" *ngFor="let a of direccion">
+          <h5 class="card-title"><span>{{a.nombre}}</span></h5>
+          <p class="card-text">Telefono: 6465654894</p>
+          <p class="card-text">{{a.calle}}, {{a.numeroE}} , {{a.ciudad}} , {{a.colonia}}</p>
+          <p class="card-text">Referencia : {{a.referencia}} </p>
+        </div>
+      </div>
+      <button type="button" class="new-direction">Agregar dirección</button>
+    </div>
+    <div class="newDirection-container">
+      <h4 class="direction-title">Direcciones de envio</h4>
+      <div class="form-container">
+        <h5 class="form-title">Agregar nueva dirección </h5>
+        <div class="forms-body">
+          <form [formGroup]="newPostForm">
+            <fieldset disabled>
+              <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input formControlName="nombre" id="nombre"  type="text" id="name" class="form-control" >
+              </div>
+            </fieldset>
+            <div class="form-row">
+            </div>
+            <div class="form-group">
+              <label for="address">Calle</label>
+              <input formControlName="calle" id="calle"  type="text" class="form-control" id="address">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="suburb">Colonia</label>
+                <input formControlName="colonia" id="colonia"  type="text" class="form-control" id="suburb">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="numExt">N. Exterior</label>
+                <input formControlName="numeroE" id="numeroE"  type="number" class="form-control" id="numExt">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="numInt">N. Interior</label>
+                <input formControlName="numeroI" id="numeroI"  type="number" class="form-control" id="numInt">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="city">Ciudad</label>
+                <input formControlName="ciudad" id="ciudad"  type="text" class="form-control" id="city">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="zip">Codigo Postal</label>
+                <input  formControlName="cp" id="cp"  type="number" class="form-control" id="zip">
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label for="reference">Referencia</label>
+              <input formControlName="referencia" id="referencia"  type="text" class="form-control" id="reference">
+            </div>
+            <button (click)="addDirection(newPostForm.value)" type="submit" class="save">Guardar</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+

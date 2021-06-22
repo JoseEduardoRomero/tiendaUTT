@@ -1,0 +1,80 @@
+<body>
+  <div class="container-main">
+    <div class="container-text">
+      <h3>Tienda UTT</h3>
+      <p>Todos los productos de la universidad Tecnológica de Tehuacán,
+         al alcance de tus manos. </p>
+      <p>¡Que esperas! Compra tu producto UTT. </p>
+      <button class="button">Ver más</button>
+    </div>
+    <div class="container-img">
+      <img src="../../../assets/ropa/pantalonnegro.jpg" alt="">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="carousel-content " class="col-8 clothes-more">
+        <owl-carousel-o [options]="customOptions">
+          <ng-template carouselSlide *ngFor="let a of products3">
+            <div class="card"   routerLink="product-details/{{ a.id }}">
+              <div class="info-img">
+                <img class="image" src="{{a.data.img}}">
+
+              </div>
+              <div class="info-text">
+                <h3>{{a.data.name}}</h3>
+                <h3>$400.00</h3>
+              </div>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+      <div class="col-4 clothes-more">
+        <h4>Ropa</h4>
+        <p>
+          Siente los colores de un tigre Blanco!, ropa para toda ocasión
+        </p>
+        <div class="clothes-link">
+          <span routerLink="/ropa">Ver más <i class="fas fa-long-arrow-alt-right"></i></span>
+        </div>
+      </div>
+      <!-- <div class="col-md-4 mb-4" *ngFor="let product2 of products">
+        <div class="info-clothes">
+          <div class="info-img">
+            <img src="{{product2.data.img}}" alt="">
+          </div>
+          <div class="info-text">
+            <h6>{{product2.data.name}}</h6>
+            <span>{{product2.data.price}}.00</span>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <div class="container-carousel">
+    <div class="carousel-text">
+      <h2>Accesorios</h2>
+    </div>
+    <div class="button-enlace">
+      <button type="button" class="btn btn-link" routerLink="/accesorios"><< >></button>
+    </div>
+    <div class="carousel-content ">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let a of products2">
+          <div class="card"   routerLink="product-details/{{ a.id }}">
+            <div class="info-img">
+              <img class="image" src="{{a.data.img}}">
+
+            </div>
+            <div class="info-text">
+              <h3>{{a.data.name}}</h3>
+              <h3>$400.00</h3>
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+
+  </div>
+</body>
